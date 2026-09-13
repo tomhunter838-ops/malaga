@@ -1,6 +1,6 @@
 /* Hunters to Málaga — offline cache. Bump VERSION on every deploy. */
-var VERSION = "malaga-v1";
-var CODE = ["./", "index.html", "app.js", "plan.js", "manifest.webmanifest"];
+var VERSION = "malaga-v2";
+var CODE = ["./", "index.html", "app.js", "plan.js"];
 var ASSETS = [
   "hero.jpg", "family.jpg",
   "us-beach.jpg", "us-swing.jpg", "us-gardens.jpg", "us-arcade.jpg", "us-lunch.jpg",
@@ -30,7 +30,7 @@ self.addEventListener("activate", function (e) {
 self.addEventListener("fetch", function (e) {
   var url = new URL(e.request.url);
   if (e.request.method !== "GET" || url.origin !== location.origin) return;
-  var isCode = /(\/|\.html|app\.js|plan\.js|\.webmanifest)$/.test(url.pathname);
+  var isCode = /(\/|\.html|app\.js|plan\.js)$/.test(url.pathname);
   e.respondWith(
     caches.match(e.request, { ignoreSearch: true }).then(function (hit) {
       if (hit) {

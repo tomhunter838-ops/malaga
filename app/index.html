@@ -10,7 +10,9 @@
 <meta name="apple-mobile-web-app-title" content="Málaga">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF7F2">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1B1916">
-<link rel="manifest" href="manifest.webmanifest">
+<!-- No manifest on purpose: with one, iOS ignores the bookmarked URL's ?sync/&key
+     (uses manifest start_url), and the standalone app's isolated storage would
+     never receive the sync config. The apple-* metas cover everything iOS needs. -->
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" href="icon-180.png">
 <style>

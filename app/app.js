@@ -35,10 +35,13 @@
   var SYNC_URL = "", SYNC_KEY = "";
   (function () {
     try {
+      // Deliberately DO NOT strip ?sync/&key from the address: on iOS the
+      // home-screen app has its own storage, separate from Safari's, and the
+      // icon bookmarks the URL as it stands when added — keeping the params
+      // is what switches the standalone copy on (and re-seeds it every open).
       var q = new URLSearchParams(location.search);
       if (q.get("sync")) store("mmt.sync", q.get("sync"));
       if (q.get("key")) store("mmt.key", q.get("key"));
-      if (q.get("sync") || q.get("key")) history.replaceState(null, "", location.pathname);
     } catch (e) {}
     SYNC_URL = read("mmt.sync") || SYNC_URL;
     SYNC_KEY = read("mmt.key") || SYNC_KEY;
